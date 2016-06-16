@@ -1,0 +1,13 @@
+proxy:
+  image: dockercloud/haproxy:1.5.1
+  ports:
+    - "9000:80"
+  links:
+    - web
+web:
+  build: .
+  volumes:
+    - .:/var/www/html:rw
+  environment:
+    - APP_ENV=development
+    - APP_DEBUG=true
